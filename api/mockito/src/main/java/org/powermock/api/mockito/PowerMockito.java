@@ -488,7 +488,8 @@ public class PowerMockito extends MemberModifier {
     }
 
     /**
-     * Just delegates to the original {@link Mockito#when(Object)} method.
+     * Delegates to the original {@link Mockito#when(Object)} method and then return PowerMockOngoingStubbing to have
+     * control then answer is added.
      *
      * @see {@link Mockito#when(Object)}
      */

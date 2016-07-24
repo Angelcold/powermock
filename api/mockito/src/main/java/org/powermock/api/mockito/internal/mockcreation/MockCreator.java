@@ -21,6 +21,7 @@ import org.mockito.internal.InternalMockHandler;
 import org.mockito.internal.creation.MockSettingsImpl;
 import org.mockito.internal.creation.instance.InstantiatorProvider;
 import org.mockito.internal.handler.MockHandlerFactory;
+import org.mockito.internal.handler.PowerMockMockHandlerFactory;
 import org.mockito.internal.util.MockNameImpl;
 import org.mockito.internal.util.reflection.LenientCopyTool;
 import org.powermock.api.mockito.internal.invocation.MockitoMethodInvocationControl;
@@ -117,7 +118,7 @@ public class MockCreator extends AbstractMockCreator {
         settings.setMockName(new MockNameImpl(mockName));
         settings.setTypeToMock(type);
 
-        InternalMockHandler mockHandler = new MockHandlerFactory().create(settings);
+        InternalMockHandler mockHandler =  PowerMockMockHandlerFactory.create(settings);
         MethodInterceptorFilter filter = new PowerMockMethodInterceptorFilter(mockHandler, settings);
         final T mock = new ClassImposterizer(new InstantiatorProvider().getInstantiator(settings)).imposterise(filter, type);
         ClassLoader classLoader = mock.getClass().getClassLoader();
